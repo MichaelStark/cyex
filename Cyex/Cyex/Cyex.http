@@ -1,0 +1,12 @@
+@Cyex_HostAddress = http://localhost:5289
+
+POST {{Cyex_HostAddress}}/api/v1/Scan
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ecosystem": "npm",
+  "fileContent": "ewogICJuYW1lIjogIk15IEFwcGxpY2F0aW9uIiwKICAidmVyc2lvbiI6ICIxLjAuMCIsCiAgImRlcGVuZGVuY2llcyI6IHsKICAgICJkZWVwLW92ZXJyaWRlIjogIjEuMC4xIiwKICAgICJleHByZXNzIjogIjQuMTcuMSIKICB9Cn0="
+}
+
+###
