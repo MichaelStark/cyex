@@ -1,7 +1,12 @@
-﻿namespace Cyex.Models;
+﻿using System.Text.Json.Serialization;
+using Cyex.Enums;
 
-public class ScanRequest
+namespace Cyex.Models;
+
+public class ScanRequest(EcosystemType ecosystem, string fileContent)
 {
-    public string Ecosystem { get; set; }
-    public string FileContent { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public EcosystemType Ecosystem { get; } = ecosystem;
+
+    public string FileContent { get; } = fileContent;
 }

@@ -1,6 +1,9 @@
-﻿namespace Cyex.Interfaces;
+﻿using Cyex.Enums;
+using Cyex.Models;
+
+namespace Cyex.Interfaces;
 
 public interface IThirdPartyService
 {
-    Task<string> RenameMe();
+    Task<SecurityVulnerabilityResponse> GetSecurityVulnerabilitiesAsync(EcosystemType ecosystem, string packageName);
 }

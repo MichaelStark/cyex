@@ -3,11 +3,14 @@ using Cyex.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IScanService, ScanService>();
 builder.Services.AddSingleton<IThirdPartyService>(provider =>
 {
     var environment = provider.GetRequiredService<IWebHostEnvironment>();
@@ -27,9 +30,8 @@ builder.Services.AddSingleton<IThirdPartyService>(provider =>
     }
 
     return new GitHubService(new HttpClient(), accessToken);
-    // return new AnotherOneService(httpClient, accessToken);
 });
-builder.Services.AddTransient<IScanService, ScanService>();
+builder.Services.AddSingleton<NpmPackageInfoService>();
 
 var app = builder.Build();
 

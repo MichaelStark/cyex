@@ -11,6 +11,7 @@ public class ScanController(IScanService scanService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Scan([FromBody] ScanRequest request)
     {
+        // TODO handle exceptions
         var result = await scanService.Scan(request);
         return Ok(result);
     }
