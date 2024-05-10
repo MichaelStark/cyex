@@ -28,4 +28,20 @@ public static class ParseHelper
             throw new ArgumentException("Invalid JSON.");
         }
     }
+
+    public static bool IsVersionInRange(string leftV, string comparisonOperator, string rightV)
+    {
+        var leftVersion = new Version(leftV);
+        var rightVersion = new Version(rightV);
+
+        return comparisonOperator switch
+        {
+            "=" => leftVersion == rightVersion,
+            "<=" => leftVersion <= rightVersion,
+            "<" => leftVersion < rightVersion,
+            ">=" => leftVersion >= rightVersion,
+            ">" => leftVersion > rightVersion,
+            _ => false
+        };
+    }
 }

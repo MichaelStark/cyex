@@ -16,7 +16,6 @@ public class GitHubService(HttpClient httpClient, string accessToken) : IThirdPa
         string packageName
     )
     {
-        // TODO check for possible injections
         var query = $$"""
                       {
                         "query": "{\n  securityVulnerabilities(ecosystem: {{ecosystem.GetName()}}, first: 100, package: \"{{packageName}}\") {\n    nodes {\n      severity\n      advisory {\n        summary\n      }\n      package {\n        name\n        ecosystem\n      }\n      vulnerableVersionRange\n      firstPatchedVersion {\n        identifier\n      }\n    }\n  }\n}"
