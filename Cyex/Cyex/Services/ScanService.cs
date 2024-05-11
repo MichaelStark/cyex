@@ -17,6 +17,7 @@ public class ScanService(
 
         await foreach (var (packageName, packageVersion) in dependencyPackages)
         {
+            // here can optimize and apply caching
             var response = await thirdPartyService.GetSecurityVulnerabilitiesAsync(request.Ecosystem, packageName);
             var package = packageInfoService.GetVulnerablePackage(
                 response,

@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyex", "Cyex\Cyex.csproj", "{5182E8DE-6FFB-4BEE-B67B-4F277ED07092}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyex.Tests.IntegrationTests", "Cyex.Tests.IntegrationTests\Cyex.Tests.IntegrationTests.csproj", "{3DA78FB8-5D5C-4B42-AD19-461978D05F25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{5182E8DE-6FFB-4BEE-B67B-4F277ED07092}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5182E8DE-6FFB-4BEE-B67B-4F277ED07092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5182E8DE-6FFB-4BEE-B67B-4F277ED07092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DA78FB8-5D5C-4B42-AD19-461978D05F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DA78FB8-5D5C-4B42-AD19-461978D05F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DA78FB8-5D5C-4B42-AD19-461978D05F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DA78FB8-5D5C-4B42-AD19-461978D05F25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
