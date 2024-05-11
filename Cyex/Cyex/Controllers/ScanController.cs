@@ -18,7 +18,7 @@ public class ScanController(IScanService scanService, ILogger<ScanController> lo
         }
         catch (Exception ex)
         {
-            logger.LogError("Something went wrong while Scan: {Message}", ex.Message);
+            logger.LogError("Something went wrong while Scan: {Message}", ex);
             return BadRequest();
         }
     }

@@ -13,7 +13,7 @@ public static class ParseHelper
         }
         catch (FormatException)
         {
-            throw new ArgumentException("Invalid Base64.");
+            throw new ArgumentException($"Invalid Base64: \"{base64Content}\".");
         }
     }
 
@@ -25,7 +25,7 @@ public static class ParseHelper
         }
         catch (JsonException)
         {
-            throw new ArgumentException("Invalid JSON.");
+            throw new ArgumentException($"Invalid JSON: \"{json}\".");
         }
     }
 

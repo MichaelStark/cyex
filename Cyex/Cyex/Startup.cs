@@ -15,6 +15,7 @@ namespace Cyex
             });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddHttpClient();
 
             services.AddSingleton<IScanService, ScanService>();
             services.AddSingleton<IThirdPartyService>(provider =>
@@ -34,7 +35,11 @@ namespace Cyex
                     );
                 }
 
-                return new GitHubService(new HttpClient(), accessToken);
+                return new GitHubService(
+                    accessToken,
+                    provider.GetRequiredService<HttpClient>(),
+                    provider.GetRequiredService<ILogger<GitHubService>>()
+                );
             });
             services.AddSingleton<NpmPackageInfoService>();
         }

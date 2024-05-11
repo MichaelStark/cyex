@@ -17,15 +17,23 @@ public class ScanService(
 
         await foreach (var (packageName, packageVersion) in dependencyPackages)
         {
-            // here can optimize and apply caching
-            var response = await thirdPartyService.GetSecurityVulnerabilitiesAsync(request.Ecosystem, packageName);
-            var package = packageInfoService.GetVulnerablePackage(
-                response,
-                packageName,
-                packageVersion,
-                request.Ecosystem
+            var vulnerabilityEnumerable = thirdPartyService.GetSecurityVulnerabilitiesAsync(
+                request.Ecosystem,
+                packageName
             );
-            if (package != null) vulnerablePackages.Add(package);
+            await foreach (var vulnerability in vulnerabilityEnumerable)
+            {
+                var package = packageInfoService.GetVulnerablePackage(
+                    vulnerability,
+                    packageName,
+                    packageVersion,
+                    request.Ecosystem
+                );
+
+                if (package == null) continue;
+                vulnerablePackages.Add(package);
+                break;
+            }
         }
 
         return new ScanResult(vulnerablePackages);

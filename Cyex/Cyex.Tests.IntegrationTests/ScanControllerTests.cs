@@ -8,27 +8,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, MaxParallelThreads = 4)]
-
 namespace Cyex.Tests.IntegrationTests
 {
-    public class ScanControllerTests
+    public class ScanControllerTests : IClassFixture<TestServerFixture>
     {
-        private readonly HttpClient _client;
-
         private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
 
-        public ScanControllerTests()
+        private readonly HttpClient _client;
+
+        public ScanControllerTests(TestServerFixture testServerFixture)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build();
-
-            var hostBuilder = new WebHostBuilder()
-                .UseConfiguration(configuration)
-                .UseEnvironment("Development")
-                .UseStartup(typeof(Startup));
-
-            var server = new TestServer(hostBuilder);
-            _client = server.CreateClient();
+            _client = testServerFixture.Server.CreateClient();
             _client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue { NoCache = true };
         }
 
@@ -108,6 +98,28 @@ namespace Cyex.Tests.IntegrationTests
             {
                 await checkResponseFunc(task);
             }
+        }
+    }
+
+    public class TestServerFixture : IDisposable
+    {
+        public TestServer Server { get; }
+
+        public TestServerFixture()
+        {
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build();
+
+            var hostBuilder = new WebHostBuilder()
+                .UseConfiguration(configuration)
+                .UseEnvironment("Development")
+                .UseStartup(typeof(Startup));
+
+            Server = new TestServer(hostBuilder);
+        }
+
+        public void Dispose()
+        {
+            Server.Dispose();
         }
     }
 }

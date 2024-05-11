@@ -5,5 +5,5 @@ namespace Cyex.Interfaces;
 
 public interface IThirdPartyService
 {
-    Task<SecurityVulnerabilityResponse> GetSecurityVulnerabilitiesAsync(EcosystemType ecosystem, string packageName);
+    IAsyncEnumerable<SecurityVulnerabilityResponse> GetSecurityVulnerabilitiesAsync(EcosystemType ecosystem, string packageName);
 }
