@@ -23,7 +23,7 @@ namespace Cyex
 
                 var accessToken = environment.IsDevelopment()
                     ? Configuration["GitHubAccessToken"]
-                    : Environment.GetEnvironmentVariable("GITHUB_ACCESS_TOKEN");
+                    : Environment.GetEnvironmentVariable("GITHUB_ACCESS_TOKEN", EnvironmentVariableTarget.Machine);
 
                 if (string.IsNullOrEmpty(accessToken))
                 {

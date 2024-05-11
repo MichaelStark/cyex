@@ -1,6 +1,9 @@
 # Cyex
-
 Find vulnerable packages in project definition files.
+
+## GitHub Access Token
+- Development - setup `GitHubAccessToken` in `appsettings.Development.json`.
+- Otherwise - `GITHUB_ACCESS_TOKEN` in environment machine variable
 
 ## Building and Running
 ### Prerequisites
@@ -29,4 +32,4 @@ $ docker-compose down
 ```
 
 ## Usage
-Run Cyex.http example
+Run `Cyex.http` example
